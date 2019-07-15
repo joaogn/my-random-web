@@ -1,0 +1,123 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  background-color: white;
+  max-width: 250px;
+  height: 100vh;
+  box-shadow: 10px 0px 30px #e9eaee;
+}
+
+.header {
+  min-height: 50px;
+  font-size: 2em;
+  border-width: 1px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.header hr {
+  margin-top: 5%;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 50px;
+  background-color: white;
+  font-size: 1.2em;
+  padding: 1%;
+  color: #1e1e1e;
+  margin-left: 3%;
+}
+
+.item img {
+  margin-right: 10px;
+  vertical-align: middle;
+  justify-self: end;
+}
+
+.item:hover {
+  background-color: #4b7efe;
+  color: white;
+}
+
+.subItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 50px;
+  background-color: white;
+  font-size: 1.2em;
+  padding: 1%;
+  color: #1e1e1e;
+  margin-left: 3%;
+}
+
+.subItem:hover {
+  background-color: #4b7efe;
+  color: white;
+}
+
+.subItem a {
+  padding: 1%;
+  margin-left: 15%;
+}
+
+.subItemL2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 50px;
+  background-color: white;
+  font-size: 1.1em;
+  padding: 1%;
+  color: #1e1e1e;
+  margin-left: 3%;
+}
+
+.subItemL2:hover {
+  background-color: #4b7efe;
+  color: white;
+}
+
+.subItemL2 a {
+  padding: 1%;
+  margin-left: 17%;
+}
+
+.itemselected {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #dfdfdf;
+  border-left-width: 3px;
+  border-left-color: #4b7efe;
+  border-right: none;
+}
+
+.item .seta-baixo {
+  content: "";
+  margin-left: auto;
+  margin-right: 5%;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #1e1e1e;
+}
+
+.seta-cima {
+  content: "";
+  margin-left: auto;
+  margin-right: 5%;
+  width: 0;
+  height: 0;
+  justify-self: flex-end;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #1e1e1e;
+}

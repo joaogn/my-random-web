@@ -8,30 +8,30 @@ import store from './store';
 
 const routes = [
     {
-      collapse: false,
+      collapsed: false,
       name: 'Dashboard',
       subItemList: [],
     },
     {
-      collapse: true,
+      collapsed: true,
       name: 'Pages',
       subItemList: [
             {
-            collapse: true,
+            collapsed: true,
             name: 'Pricing',
             subItemList: [
                 {
-                    collapse: false,
+                    collapsed: false,
                     name: 'Dashboard',
                     subItemList: [],
                 },
                 {
-                    collapse: false,
+                    collapsed: false,
                     name: 'Dashboard',
                     subItemList: [],
                 },
                 {
-                    collapse: false,
+                    collapsed: false,
                     name: 'Dashboard',
                     subItemList: [],
                 },
@@ -40,25 +40,25 @@ const routes = [
         ],
     },
     {
-        collapse: false,
+        collapsed: false,
         name: 'Dashboard',
         subItemList: [],
     },
     {
-        collapse: true,
+        collapsed: true,
         name: 'Pages',
         subItemList: [
               {
-              collapse: true,
+              collapsed: true,
               name: 'Pricing',
               subItemList: [
                   {
-                      collapse: false,
+                      collapsed: false,
                       name: 'Dashboard',
                       subItemList: [],
                   },
                   {
-                      collapse: false,
+                      collapsed: false,
                       name: 'Dashboard',
                       subItemList: [],
                   },
