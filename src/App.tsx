@@ -7,12 +7,10 @@ import Routes from './routes';
 import store from './store';
 
 
-
-class App extends Component{
-
+class App extends Component {
     componentDidMount() {}
 
-  
+
     render() {
       return (
         <Provider store={store}>
@@ -23,6 +21,6 @@ class App extends Component{
       );
     }
   }
-  
+
 
 export default App;

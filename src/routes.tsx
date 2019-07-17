@@ -1,8 +1,8 @@
-  
+
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Main from './components/Main/';
+import Main from './components/Main';
 import List from './components/RepositoryList';
 
 

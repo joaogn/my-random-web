@@ -41,16 +41,18 @@ class Header extends Component<Props, State> {
     }
 
     handleUserActivate = async () => {
-      this.setState({ isUserOpen: !this.state.isUserOpen });
+      const { isUserOpen } = this.state;
+      this.setState({ isUserOpen: !isUserOpen });
   }
 
     render() {
+      const { isUserOpen } = this.state;
         return (
           <div className="main-header">
             <div className="header-content">
               <MenuIcon width="24" height="24" onClick={() => this.handleActivate()} />
               <div className="user-content">
-                <Dropdown isOpen={this.state.isUserOpen} onClick={() => this.handleUserActivate()}>
+                <Dropdown isOpen={isUserOpen} onClick={() => this.handleUserActivate()}>
                   <DropdownToggle caret tag="span"> User</DropdownToggle>
                   <DropdownMenu>
                     <DropdownItem header>Logout</DropdownItem>

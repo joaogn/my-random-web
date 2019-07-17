@@ -21,7 +21,7 @@
   align-items: center;
   width: 10%;
   min-width: 150px;
-  margin-right: -1%;
+  margin-right: 0;
 }
 
 .user-content span {

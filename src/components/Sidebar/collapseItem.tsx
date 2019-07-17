@@ -1,3 +1,9 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable no-shadow */
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/no-self-import */
 
 import React, { Component } from 'react';
 import { Collapse } from 'reactstrap';
@@ -6,6 +12,7 @@ import LinkItem from './linkItem';
 import CollapseItem2 from './collapseItem';
 
 import './style.css';
+
 
 const classNames = require('classnames');
 
@@ -28,22 +35,21 @@ export default class CollapseItem extends Component<Props, State> {
     componentDidMount() {}
 
     handleCollapse = async () => {
-        this.setState({ collapse: !this.state.collapse });
+        const { collapse } = this.state;
+        this.setState({ collapse: !collapse });
     }
 
-    createLogo(Logo:React.FunctionComponent<React.SVGProps<SVGSVGElement>> | undefined) {
+    createLogo = (Logo:React.FunctionComponent<React.SVGProps<SVGSVGElement>> | undefined) => {
         if (Logo !== undefined) {
           return <Logo width="24" height="24" className="menu-logo" />;
         }
           return null;
-
-
       }
 
     render() {
         const {
- name, Logo, itemList, level,
-} = this.props;
+          name, Logo, itemList, level,
+          } = this.props;
         const { collapse } = this.state;
         return (
           <div>
@@ -56,7 +62,7 @@ export default class CollapseItem extends Component<Props, State> {
               { itemcollapsed: collapse },
               )}
               onClick={() => this.handleCollapse()}
-          >
+            >
               {this.createLogo(Logo)}
               <span>{name}</span>
               <div className={classNames({ 'seta-cima': collapse }, { 'seta-baixo': !collapse })} />
@@ -68,18 +74,22 @@ export default class CollapseItem extends Component<Props, State> {
                           name, subItemList, path, Logo,
                           } = item;
                     if (subItemList !== undefined) {
-                      return <CollapseItem2 name={name} Logo={Logo} path={path} level={level + 1} itemList={subItemList} />;
+                      return (
+                        <CollapseItem2
+                          name={name}
+                          Logo={Logo}
+                          path={path}
+                          level={level + 1}
+                          itemList={subItemList}
+                        />
+                      );
                     }
                       return <LinkItem name={name} Logo={Logo} path={path} level={level + 1} />;
-
-
                   })
               }
             </Collapse>
           </div>
 
         );
-
     }
-
 }

@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable import/no-extraneous-dependencies */
 
 import React, { Component } from 'react';
-import { Item } from './interface'
+import { connect } from 'react-redux';
+import { Item } from './interface';
 import LinkItem from './linkItem';
 import CollapseItem from './collapseItem';
-import { connect } from 'react-redux';
 import { ApplicationState } from '../../store';
 
 import './style.css';
@@ -21,24 +23,32 @@ class Sidemenu extends Component<Props> {
 
 
   render() {
-    const { itemList } = this.props;
+    const { itemList, isOpen } = this.props;
     return (
-        <nav className={classNames('sidebar',{'hide': (this.props.isOpen)})}>
-            <div className='header'>
-              <div className='header-content'>Logo</div>
-            </div>
-            { 
-              itemList.map((item) =>{
-                const { name, subItemList, path, Logo } = item;
-                if(subItemList !== undefined){
-                  return <CollapseItem name={ name } Logo={Logo} path={ path } level={0} itemList={subItemList} />
-                }else {
-                  return <LinkItem name={ name } Logo={Logo} path={ path } level={0} />
-                }
-
-              }) 
+      <nav className={classNames('sidebar', { hide: (isOpen) })}>
+        <div className="header">
+          <div className="header-content">Logo</div>
+        </div>
+        {
+          itemList.map((item) => {
+            const {
+              name, subItemList, path, Logo,
+            } = item;
+            if (subItemList !== undefined) {
+              return (
+                <CollapseItem
+                  name={name}
+                  Logo={Logo}
+                  path={path}
+                  level={0}
+                  itemList={subItemList}
+                />
+              );
             }
-        </nav>
+              return <LinkItem name={name} Logo={Logo} path={path} level={0} />;
+            })
+            }
+      </nav>
     );
   }
 }

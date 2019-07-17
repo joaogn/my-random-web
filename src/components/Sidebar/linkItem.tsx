@@ -1,37 +1,81 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable no-param-reassign */
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
+import { LinkItem } from '../../store/ducks/linkitem/types';
+import { ApplicationState } from '../../store';
+
+import * as LinkitemActions from '../../store/ducks/linkitem/actions';
 
 import './style.css';
 
 const classNames = require('classnames');
 
-interface Props {
-    Logo?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>,
-    name: string,
-    path?: string,
-    level: number;
+interface StateProps {
+  Logo?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>,
+  name: string,
+  path?: string,
+  level: number;
+  linkitens: LinkItem[];
+}
+
+interface DispatchProps {
+  changeLink(linkitem:LinkItem): void
+  addItem(linkitem:LinkItem): void
 }
 
 interface State {
     active: boolean
 }
 
-export default class LinkItem extends Component<Props, State> {
+type Props = StateProps & DispatchProps
+
+
+class LinkItens extends Component<Props, State> {
     state:State = { active: false }
+
+    constructor(props:Props) {
+      super(props);
+      const { addItem, name } = this.props;
+      const linkitem = { name, active: false };
+      addItem(linkitem);
+    }
+
 
     componentDidMount() {}
 
-    handleActivate = async () => {
-        this.setState({ active: !this.state.active });
-    }
+    shouldComponentUpdate() {
+      const { name, linkitens } = this.props;
+      linkitens.map((linkitem) => {
+          if (linkitem.name === name) {
+              this.state.active = linkitem.active;
+          }
+          return linkitem;
+      });
+      return true;
+  }
 
-    createLogo(Logo:React.FunctionComponent<React.SVGProps<SVGSVGElement>> | undefined) {
+  handleActivate = async () => {
+    const { changeLink, name, linkitens } = this.props;
+    linkitens.map((linkitem) => {
+        if (linkitem.name === name) {
+            linkitem.active = true;
+            changeLink(linkitem);
+        }
+        return linkitem;
+    });
+}
+
+    createLogo = (Logo:React.FunctionComponent<React.SVGProps<SVGSVGElement>> | undefined) => {
         if (Logo !== undefined) {
           return <Logo width="24" height="24" className="menu-logo" />;
         }
           return null;
-
-
       }
 
     render() {
@@ -52,13 +96,23 @@ export default class LinkItem extends Component<Props, State> {
                         { subItemL2: (level >= 2) },
                         { itemselected: active },
                         )}
-              >
+              onClick={() => this.handleActivate()}
+            >
               {this.createLogo(Logo)}
               <span>{name}</span>
             </li>
           </Link>
         );
-
     }
-
 }
+
+
+const mapStateToProps = (state: ApplicationState) => ({
+  linkitens: state.linkitem.data,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(
+  LinkitemActions, dispatch,
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(LinkItens);
