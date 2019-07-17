@@ -1,122 +1,50 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators, Dispatch } from 'redux';
-import { Collapse } from 'react-collapse';
 
-import test from '../../assets/icons/like.svg';
+import React, { Component } from 'react';
+import { Item } from './interface'
+import LinkItem from './linkItem';
+import CollapseItem from './collapseItem';
+import { connect } from 'react-redux';
+import { ApplicationState } from '../../store';
+
 import './style.css';
 
 const classNames = require('classnames');
 
-
-interface Item {
-    collapsed: boolean,
-  //  path: string,
-    name: string,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-   // component: Record<string, any>,
-    subItemList: Item[]
-
-}
-
 interface Props {
-    itemList: Item[]
+  isOpen: boolean;
+  itemList: Item[];
 }
 
-class Sidebar extends Component<Props> {
+
+class Sidemenu extends Component<Props> {
   componentDidMount() {}
 
-  createSubItemL2(itemList:Item[]) {
-    return itemList.map((item) => {
-      const { collapsed, name, subItemList } = item;
-      if (subItemList.length > 0) {
-       return (
-         <>
-           <li className={classNames('subItemL2')}>
-             <a>{name}</a>
-           </li>
-           <Collapse isOpened={collapsed}>
-             {this.createSubItemL2(subItemList)}
-           </Collapse>
-         </>
-        );
-      }
-       return (
-         <li className="subItemL2">
-           <a>{name}</a>
-         </li>
-        );
-    });
-  }
-
-  createSubItemL1(itemList:Item[]) {
-    return itemList.map((item) => {
-      const { collapsed, name, subItemList } = item;
-      if (subItemList.length > 0) {
-       return (
-         <>
-           <li className="subItem">
-             <a>{name}</a>
-             <div className="seta-cima" />
-           </li>
-           <Collapse isOpened={collapsed}>
-             {this.createSubItemL2(subItemList)}
-           </Collapse>
-         </>
-        );
-      }
-       return (
-         <li className="subItem">
-           <a>{name}</a>
-         </li>
-        );
-    });
-  }
-
-  createMenus(itemList:Item[]) {
-      return itemList.map((item) => {
-        const { collapsed, name, subItemList } = item;
-        if (subItemList.length > 0) {
-         return (
-           <>
-             <li className="item">
-               <img src={test} />
-               <a>{name}</a>
-               <div className="seta-cima" />
-             </li>
-             <Collapse isOpened={collapsed}>
-               {this.createSubItemL1(subItemList)}
-             </Collapse>
-           </>
-          );
-        }
-         return (
-           <li className="item">
-             <img src={test} />
-             <a>{name}</a>
-           </li>
-          );
-      });
-  }
 
   render() {
-      const { itemList } = this.props;
+    const { itemList } = this.props;
     return (
-      <nav className="sidebar">
-        <div className="header">
-          <p>Logo</p>
+        <nav className={classNames('sidebar',{'hide': (this.props.isOpen)})}>
+            <div className='header'>
+              <div className='header-content'>Logo</div>
+            </div>
+            { 
+              itemList.map((item) =>{
+                const { name, subItemList, path, Logo } = item;
+                if(subItemList !== undefined){
+                  return <CollapseItem name={ name } Logo={Logo} path={ path } level={0} itemList={subItemList} />
+                }else {
+                  return <LinkItem name={ name } Logo={Logo} path={ path } level={0} />
+                }
 
-          <hr />
-        </div>
-
-        {this.createMenus(itemList)}
-      </nav>
+              }) 
+            }
+        </nav>
     );
   }
 }
 
-export default Sidebar;
+const mapStateToProps = (state: ApplicationState) => ({
+  isOpen: state.sidemenu.isOpen,
+});
+
+export default connect(mapStateToProps)(Sidemenu);

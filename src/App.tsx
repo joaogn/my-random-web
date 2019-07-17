@@ -1,74 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
-import RepositoryList from './components/RepositoryList';
-import Sidebar from './components/Sidebar';
+import Routes from './routes';
 
 import store from './store';
 
-const routes = [
-    {
-      collapsed: false,
-      name: 'Dashboard',
-      subItemList: [],
-    },
-    {
-      collapsed: true,
-      name: 'Pages',
-      subItemList: [
-            {
-            collapsed: true,
-            name: 'Pricing',
-            subItemList: [
-                {
-                    collapsed: false,
-                    name: 'Dashboard',
-                    subItemList: [],
-                },
-                {
-                    collapsed: false,
-                    name: 'Dashboard',
-                    subItemList: [],
-                },
-                {
-                    collapsed: false,
-                    name: 'Dashboard',
-                    subItemList: [],
-                },
-            ],
-            },
-        ],
-    },
-    {
-        collapsed: false,
-        name: 'Dashboard',
-        subItemList: [],
-    },
-    {
-        collapsed: true,
-        name: 'Pages',
-        subItemList: [
-              {
-              collapsed: true,
-              name: 'Pricing',
-              subItemList: [
-                  {
-                      collapsed: false,
-                      name: 'Dashboard',
-                      subItemList: [],
-                  },
-                  {
-                      collapsed: false,
-                      name: 'Dashboard',
-                      subItemList: [],
-                  },
-                ],
-            },
-        ],
-    },
 
-];
 
-const App = () => <Provider store={store}><Sidebar itemList={routes} /></Provider>;
+class App extends Component{
+
+    componentDidMount() {}
+
+  
+    render() {
+      return (
+        <Provider store={store}>
+          <BrowserRouter>
+            <Routes />
+          </BrowserRouter>
+        </Provider>
+      );
+    }
+  }
+  
 
 export default App;

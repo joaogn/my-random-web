@@ -1,0 +1,17 @@
+.main {
+  display: flex;
+  flex-direction: row;
+}
+
+.main .main-content {
+  width: 100%;
+}
+
+.main .main-content .main-header {
+  align-self: flex-start;
+}
+
+.main .main-content .main-routes {
+  margin-left: 10%;
+  margin-top: 2%;
+}
