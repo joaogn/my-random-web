@@ -52,10 +52,10 @@ class Header extends Component<Props, State> {
             <div className="header-content">
               <MenuIcon width="24" height="24" onClick={() => this.handleActivate()} />
               <div className="user-content">
-                <Dropdown isOpen={isUserOpen} onClick={() => this.handleUserActivate()}>
+                <Dropdown direction="left" isOpen={isUserOpen} onClick={() => this.handleUserActivate()}>
                   <DropdownToggle caret tag="span"> User</DropdownToggle>
-                  <DropdownMenu>
-                    <DropdownItem header>Logout</DropdownItem>
+                  <DropdownMenu className='dropitem'>
+                    <DropdownItem>Logout</DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
                 <UserIcon width="32" height="32" className="circle" />

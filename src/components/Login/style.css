@@ -66,11 +66,11 @@
   background-color: #4b7efe;
   border-radius: 5px;
 
-  transition: all 0.4s;
+  transition: all 0.2s;
   border: transparent !important;
 }
 
 .login-form-btn:hover {
-  background-color: #4b00ff;
+  background-color: #1f5dfa;
   transition: ease-in-out 0.4s;
 }

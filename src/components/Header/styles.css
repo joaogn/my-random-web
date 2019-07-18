@@ -18,14 +18,17 @@
 
 .user-content {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
-  width: 10%;
-  min-width: 150px;
-  margin-right: 0;
+  margin-right: 10px;
 }
 
 .user-content span {
-  margin-right: 20px;
+  margin-right: 10px;
+}
+
+.user-content .dropitem {
+  width: 20px !important;
 }
 
 .user-content .circle {
@@ -38,4 +41,23 @@
 
 .user-content .circle path {
   stroke: #4b7efe;
+}
+
+@media only screen and (max-width: 500px) {
+  .user-content {
+    margin-right: 10px;
+  }
+  .user-content span {
+    font-size: 0.8em;
+    margin-right: 2px;
+  }
+  .header-content svg {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+  }
+  .user-content svg {
+    width: 20px;
+    height: 20px;
+  }
 }
