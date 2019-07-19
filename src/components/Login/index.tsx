@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Input, SubmitHandler } from '@rocketseat/unform';
 import * as Yup from 'yup';
-
+import api from '../../services/api';
+import { login, logout } from '../../services/auth';
 import './style.css';
 
 const schema = Yup.object().shape({
@@ -22,8 +23,16 @@ interface Data {
 export default class Login extends Component {
     componentDidMount() {}
 
-    handleSubmit: SubmitHandler<Data> = (data) => {
+    handleSubmit: SubmitHandler<Data> = async (data) => {
         console.log(data);
+        const response = await api.post('/token', data);
+        console.log(response);
+        await login(response.data.token);
+        const authresponse = await api.get('/api/users/1');
+        console.log(authresponse);
+        await logout();
+        const authnoresponse = await api.get('/api/users/1');
+        console.log(authnoresponse);
       }
 
     render() {
