@@ -21,3 +21,12 @@ a {
 a:hover {
   text-decoration: none;
 }
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #ddd;
+}

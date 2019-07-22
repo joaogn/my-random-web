@@ -12,11 +12,15 @@
 
 .main .main-content .main-header {
   align-self: center;
+  height: 50px;
 }
 
 .main .main-content .main-routes {
-  margin-left: 50px;
+  margin-left: 20px;
   margin-top: 10px;
+  margin-bottom: -10px;
+  height: calc(100vh - 60px);
+  overflow-y: scroll;
 }
 
 @media only screen and (max-width: 500px) {
