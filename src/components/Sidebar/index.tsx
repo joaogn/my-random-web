@@ -1,8 +1,10 @@
+/* eslint-disable import/no-named-default */
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable import/no-extraneous-dependencies */
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { default as classNames } from 'classnames';
 import { Item } from './interface';
 import LinkItem from './linkItem';
 import CollapseItem from './collapseItem';
@@ -10,7 +12,6 @@ import { ApplicationState } from '../../store';
 
 import './style.css';
 
-const classNames = require('classnames');
 
 interface Props {
   isOpen: boolean;

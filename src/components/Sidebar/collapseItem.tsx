@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-default */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-shadow */
@@ -7,14 +8,13 @@
 
 import React, { Component } from 'react';
 import { Collapse } from 'reactstrap';
+import { default as classNames } from 'classnames';
 import { Item } from './interface';
 import LinkItem from './linkItem';
 import CollapseItem2 from './collapseItem';
 
 import './style.css';
 
-
-const classNames = require('classnames');
 
 interface Props {
     Logo?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>,

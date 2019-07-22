@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-default */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-param-reassign */
@@ -7,6 +8,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
+import { default as classNames } from 'classnames';
 import { LinkItem } from '../../store/ducks/linkitem/types';
 import { ApplicationState } from '../../store';
 
@@ -14,7 +16,6 @@ import * as LinkitemActions from '../../store/ducks/linkitem/actions';
 
 import './style.css';
 
-const classNames = require('classnames');
 
 interface StateProps {
   Logo?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>,
