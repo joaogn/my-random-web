@@ -13,6 +13,9 @@ import { ApplicationState } from '../../store';
 
 import * as SideMenuActions from '../../store/ducks/sidemenu/actions';
 
+
+import { User } from '../../store/ducks/user/types';
+
 import './styles.css';
 
 import { ReactComponent as MenuIcon } from '../../assets/icons/menu.svg';
@@ -21,6 +24,7 @@ import { ReactComponent as UserIcon } from '../../assets/icons/user.svg';
 
 interface StateProps {
     isOpen: boolean;
+    user: User;
 }
 
 interface DispatchProps {
@@ -57,13 +61,16 @@ class Header extends Component<Props, State> {
 
     render() {
       const { isUserOpen } = this.state;
+      const { user } = this.props;
         return (
           <div className="main-header">
             <div className="header-content">
               <MenuIcon width="24" height="24" onClick={() => this.handleActivate()} />
               <div className="user-content">
                 <Dropdown direction="left" isOpen={isUserOpen} onClick={() => this.handleUserActivate()}>
-                  <DropdownToggle caret tag="span"> User</DropdownToggle>
+                  <DropdownToggle caret tag="span">
+                    { user.name }
+                  </DropdownToggle>
                   <DropdownMenu className="dropitem">
                     <DropdownItem onClick={() => this.handleLogout()}>Logout</DropdownItem>
                   </DropdownMenu>
@@ -79,6 +86,7 @@ class Header extends Component<Props, State> {
 
 const mapStateToProps = (state: ApplicationState) => ({
      isOpen: state.sidemenu.isOpen,
+     user: state.user,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(
