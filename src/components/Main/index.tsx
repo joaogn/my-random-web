@@ -1,17 +1,33 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { Component } from 'react';
-
 import { BrowserRouter, RouteComponentProps, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Header from '../Header';
 import Sidebar from '../Sidebar';
 import Routes, { menuRoutes } from './routes';
 
+import { ApplicationState } from '../../store';
+
 import './styles.css';
 
-class Main extends Component<RouteComponentProps<any>> {
+interface StateProps {
+  isAuth: boolean;
+}
+
+type Props = StateProps & RouteComponentProps<any>;
+
+class Main extends Component<Props> {
     componentDidMount() {}
 
+    shouldComponentUpdate() {
+      const { isAuth, history } = this.props;
+      if (isAuth) {
+        return true;
+      }
+        history.push('/login');
+        return false;
+    }
 
     render() {
       const {
@@ -41,5 +57,9 @@ class Main extends Component<RouteComponentProps<any>> {
     }
   }
 
+  const mapStateToProps = (state: ApplicationState) => ({
+    isAuth: state.auth.isAuth,
+  });
 
-export default withRouter(Main);
+
+export default connect(mapStateToProps)(withRouter(Main));

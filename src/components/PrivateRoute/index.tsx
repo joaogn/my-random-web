@@ -1,22 +1,25 @@
 import * as React from 'react';
 import { Redirect, Route, RouteProps } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { ApplicationState } from '../../store';
 
 export interface Props extends RouteProps {
-    isAuthenticated: boolean;
-    authenticationPath: string;
+    isAuth: boolean;
 }
-
-export default class PrivateRoute extends Route<Props> {
+class PrivateRoute extends Route<Props> {
     public render() {
-        let redirectPath = '';
-        if (!this.props.isAuthenticated) {
-            redirectPath = this.props.authenticationPath;
-        }
-
-        if (redirectPath) {
-            const renderComponent = () => (<Redirect to={{ pathname: redirectPath }} />);
-            return <Route {...this.props} component={renderComponent} render={undefined} />;
+        const { isAuth } = this.props;
+        if (!isAuth) {
+            return <Redirect to="/login" />;
         }
             return <Route {...this.props} />;
     }
 }
+
+
+const mapStateToProps = (state: ApplicationState) => ({
+    isAuth: state.auth.isAuth,
+  });
+
+
+export default connect(mapStateToProps)(PrivateRoute);

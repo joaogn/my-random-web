@@ -78,9 +78,11 @@ class Header extends Component<Props, State> {
                     { user.name }
                   </DropdownToggle>
                   <DropdownMenu className="dropitem">
-                    <DropdownItem>
-                      <Link to="/main/user">Edit User</Link>
-                    </DropdownItem>
+                    <Link to="/main/user">
+                      <DropdownItem>
+                        Edit User
+                      </DropdownItem>
+                    </Link>
                     <DropdownItem divider />
                     <DropdownItem onClick={() => this.handleLogout()}>Logout</DropdownItem>
                   </DropdownMenu>

@@ -54,7 +54,7 @@ class Login extends Component<Props, State> {
           await login(response.data.token);
           const responseUser = await api.get(`/api/users/email/${data.email}`);
           localStorage.setItem('@myrandom-UserId', responseUser.data.payload.id);
-          await history.push('/main');
+          history.push('/main');
         } catch {
           this.setState({ error: true });
         }
@@ -97,4 +97,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(
 );
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
