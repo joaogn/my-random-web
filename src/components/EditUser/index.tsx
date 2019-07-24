@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Form, Input, SubmitHandler } from '@rocketseat/unform';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
@@ -48,6 +48,8 @@ class EditUser extends Component<Props> {
       const { user } = this.props;
       try {
         await api.put(`/api/users/${user.id}/update`, data);
+        const { loadRequest } = this.props;
+        loadRequest();
       } catch {
            //   this.setState({ error: true });
       }
@@ -55,18 +57,22 @@ class EditUser extends Component<Props> {
 
   render() {
     const { user } = this.props;
+    const formData:Data = {
+      name: user.name,
+      email: user.email,
+    };
       return (
         <div className="container-edit-user">
           <p className="container-edit-user-title"> Edit User</p>
           <div className="wrap-edit-user">
-            <Form schema={schema} onSubmit={this.handleSubmit}>
+            <Form initialData={formData} schema={schema} onSubmit={this.handleSubmit}>
               <div className="container-edit-user-form-btn">
                 <p className="label">Name</p>
-                <Input className="input" name="name" type="name" placeholder="Nome" value={user.name} />
+                <Input className="input" name="name" type="name" placeholder="Nome" />
               </div>
               <div className="container-edit-user-form-btn">
                 <p>Email</p>
-                <Input className="input" name="email" type="email" placeholder="Email" value={user.email} />
+                <Input className="input" name="email" type="email" placeholder="Email" />
               </div>
               <div className="container-edit-user-form-btn">
                 <p>New Password</p>
