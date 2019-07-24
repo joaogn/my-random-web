@@ -2,8 +2,9 @@
  * Action types
  */
 export enum UserTypes {
-    ADD_USER = '@user/ADD_USER',
-    READ_USER = '@user/READ_USER'
+  LOAD_REQUEST = '@user/LOAD_REQUEST',
+  LOAD_SUCCESS = '@user/LOAD_SUCCESS',
+  LOAD_FAILURE = '@user/LOAD_FAILURE'
   }
 
   /**
@@ -22,4 +23,6 @@ export enum UserTypes {
     readonly id: number
     readonly name: string
     readonly email: string
+    readonly loading: boolean
+    readonly error: boolean
   }

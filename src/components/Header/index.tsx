@@ -5,13 +5,14 @@ import { bindActionCreators, Dispatch } from 'redux';
 import {
  Dropdown, DropdownToggle, DropdownMenu, DropdownItem,
 } from 'reactstrap';
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, Link } from 'react-router-dom';
 
 import { logout } from '../../services/auth';
 
 import { ApplicationState } from '../../store';
 
 import * as SideMenuActions from '../../store/ducks/sidemenu/actions';
+import * as UserActions from '../../store/ducks/user/actions';
 
 
 import { User } from '../../store/ducks/user/types';
@@ -30,6 +31,7 @@ interface StateProps {
 interface DispatchProps {
     toggleMenu(): void;
     readMenu(): void;
+    loadRequest(): void
 }
 
 interface State {
@@ -41,7 +43,11 @@ type Props = StateProps & DispatchProps & RouteComponentProps<any>;
 class Header extends Component<Props, State> {
     state:State = { isUserOpen: false }
 
-    componentDidMount() {}
+    componentDidMount() {
+      const { loadRequest } = this.props;
+
+      loadRequest();
+    }
 
     handleActivate = async () => {
         const { toggleMenu } = this.props;
@@ -72,6 +78,10 @@ class Header extends Component<Props, State> {
                     { user.name }
                   </DropdownToggle>
                   <DropdownMenu className="dropitem">
+                    <DropdownItem>
+                      <Link to="/main/user">Edit User</Link>
+                    </DropdownItem>
+                    <DropdownItem divider />
                     <DropdownItem onClick={() => this.handleLogout()}>Logout</DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
@@ -90,7 +100,7 @@ const mapStateToProps = (state: ApplicationState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(
-        SideMenuActions, dispatch,
+  Object.assign({}, SideMenuActions, UserActions), dispatch,
 );
 
 

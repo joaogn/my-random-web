@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Feed from '../RepositoryList';
+import User from '../EditUser';
 
 import { ReactComponent as HomeIcon } from '../../assets/icons/home.svg';
 import { ReactComponent as CalculatorIcon } from '../../assets/icons/avcalculator.svg';
@@ -11,6 +12,7 @@ function Routes() {
     return (
       <Switch>
         <Route path="/main/feed" exact component={Feed} />
+        <Route path="/main/user" exact component={User} />
       </Switch>
     );
 }

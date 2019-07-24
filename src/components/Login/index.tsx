@@ -48,12 +48,12 @@ class Login extends Component<Props, State> {
     componentDidMount() {}
 
     handleSubmit: SubmitHandler<Data> = async (data) => {
-        const { history, addUser } = this.props;
+        const { history } = this.props;
         try {
           const response = await api.post('/token', data);
           await login(response.data.token);
           const responseUser = await api.get(`/api/users/email/${data.email}`);
-          await addUser(responseUser.data.payload);
+          localStorage.setItem('@myrandom-UserId', responseUser.data.payload.id);
           await history.push('/main');
         } catch {
           this.setState({ error: true });
