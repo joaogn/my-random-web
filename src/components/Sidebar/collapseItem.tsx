@@ -54,7 +54,6 @@ export default class CollapseItem extends Component<Props, State> {
         return (
           <div>
             <li
-              key={name}
               className={classNames(
               { item: (level === 0) },
               { subItem: (level === 1) },
@@ -76,6 +75,7 @@ export default class CollapseItem extends Component<Props, State> {
                     if (subItemList !== undefined) {
                       return (
                         <CollapseItem2
+                          key={name}
                           name={name}
                           Logo={Logo}
                           path={path}
@@ -84,7 +84,15 @@ export default class CollapseItem extends Component<Props, State> {
                         />
                       );
                     }
-                      return <LinkItem name={name} Logo={Logo} path={path} level={level + 1} />;
+                      return (
+                        <LinkItem
+                          key={name}
+                          name={name}
+                          Logo={Logo}
+                          path={path}
+                          level={level + 1}
+                        />
+                      );
                   })
               }
             </Collapse>

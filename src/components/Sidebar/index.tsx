@@ -38,6 +38,7 @@ class Sidemenu extends Component<Props> {
             if (subItemList !== undefined) {
               return (
                 <CollapseItem
+                  key={name}
                   name={name}
                   Logo={Logo}
                   path={path}
@@ -46,7 +47,7 @@ class Sidemenu extends Component<Props> {
                 />
               );
             }
-              return <LinkItem name={name} Logo={Logo} path={path} level={0} />;
+              return <LinkItem key={name} name={name} Logo={Logo} path={path} level={0} />;
             })
             }
       </nav>

@@ -73,7 +73,7 @@ class Header extends Component<Props, State> {
             <div className="header-content">
               <MenuIcon width="24" height="24" onClick={() => this.handleActivate()} />
               <div className="user-content">
-                <Dropdown direction="left" isOpen={isUserOpen} onClick={() => this.handleUserActivate()}>
+                <Dropdown direction="left" isOpen={isUserOpen} toggle={this.handleUserActivate} onClick={() => this.handleUserActivate()}>
                   <DropdownToggle caret tag="span">
                     { user.name }
                   </DropdownToggle>

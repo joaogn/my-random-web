@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import { Form, Input, SubmitHandler } from '@rocketseat/unform';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
@@ -7,6 +7,7 @@ import { ApplicationState } from '../../store';
 import { User } from '../../store/ducks/user/types';
 import * as UserActions from '../../store/ducks/user/actions';
 import api from '../../services/api';
+
 import './style.css';
 
 const schema = Yup.object().shape({

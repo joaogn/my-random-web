@@ -30,16 +30,10 @@ interface DispatchProps {
   addItem(linkitem:LinkItem): void
 }
 
-interface State {
-    active: boolean
-}
-
 type Props = StateProps & DispatchProps
 
 
-class LinkItens extends Component<Props, State> {
-    state:State = { active: false }
-
+class LinkItens extends Component<Props> {
     constructor(props:Props) {
       super(props);
       const { addItem, name } = this.props;
@@ -50,16 +44,6 @@ class LinkItens extends Component<Props, State> {
 
     componentDidMount() {}
 
-    shouldComponentUpdate() {
-      const { name, linkitens } = this.props;
-      linkitens.map((linkitem) => {
-          if (linkitem.name === name) {
-              this.state.active = linkitem.active;
-          }
-          return linkitem;
-      });
-      return true;
-  }
 
   handleActivate = async () => {
     const { changeLink, name, linkitens } = this.props;
@@ -80,8 +64,17 @@ class LinkItens extends Component<Props, State> {
       }
 
     render() {
-        const { name, Logo, level } = this.props;
-        const { active } = this.state;
+        const {
+          name, Logo, level, linkitens,
+         } = this.props;
+         let actived = false;
+
+          linkitens.map((linkitem) => {
+            if (linkitem.name === name) {
+              actived = linkitem.active;
+            }
+            return linkitem;
+        });
         let { path } = this.props;
         if (path === undefined) {
             path = '';
@@ -89,13 +82,12 @@ class LinkItens extends Component<Props, State> {
         return (
           <Link to={path}>
             <li
-              key={name}
               className={
                     classNames(
                         { item: (level === 0) },
                         { subItem: (level === 1) },
                         { subItemL2: (level >= 2) },
-                        { itemselected: active },
+                        { itemselected: actived },
                         )}
               onClick={() => this.handleActivate()}
             >
