@@ -52,8 +52,7 @@ class Login extends Component<Props, State> {
         try {
           const response = await api.post('/token', data);
           await login(response.data.token);
-          const responseUser = await api.get(`/api/users/email/${data.email}`);
-          localStorage.setItem('@myrandom-UserId', responseUser.data.payload.id);
+          await localStorage.setItem('@myrandom-UserEmail', data.email ? data.email : '');
           history.push('/main');
         } catch {
           this.setState({ error: true });
