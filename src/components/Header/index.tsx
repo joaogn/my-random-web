@@ -62,7 +62,7 @@ class Header extends Component<Props, State> {
     handleLogout = async () => {
       await logout();
       const { history } = this.props;
-      history.push('/login');
+      history.push('/');
     }
 
     render() {

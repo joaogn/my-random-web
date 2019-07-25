@@ -13,7 +13,7 @@ function Routes() {
       <Switch>
         <PrivateRoute path="/main" exact component={Main} />
         <Route path="/list" exact component={List} />
-        <Route path="/login" exact component={Login} />
+        <Route path="/" exact component={Login} />
         <Route path="*" component={() => <h1>Page not found</h1>} />
       </Switch>
     );

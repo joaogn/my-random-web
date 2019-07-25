@@ -25,7 +25,7 @@ class Main extends Component<Props> {
       if (isAuth) {
         return true;
       }
-        history.push('/login');
+        history.push('/');
         return false;
     }
 
