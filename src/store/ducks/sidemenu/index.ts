@@ -12,11 +12,6 @@ const reducer: Reducer<SideMenuState> = (state = INITIAL_STATE, action) => {
         ...state,
         isOpen: !state.isOpen,
       };
-    case SideMenuTypes.READ_MENU:
-      return {
-        ...state,
-        isOpen: state.isOpen,
-        };
     default:
       return state;
   }

@@ -30,7 +30,6 @@ interface StateProps {
 
 interface DispatchProps {
     toggleMenu(): void;
-    readMenu(): void;
     loadRequest(): void
 }
 
